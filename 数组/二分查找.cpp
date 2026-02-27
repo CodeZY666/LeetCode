@@ -22,3 +22,24 @@ public:
         return -1;
     }
 };
+
+// 解法2-左闭右开
+class Solution{
+public:
+    int Search(vector<int> &num, int target){ // 修正拼写错误 Serch → Search
+        int left = 0;
+        int right = num.size(); // 左闭右开区间 [left, right)
+        while (left < right){ // 区间不为空时循环
+            // 位运算替代除法，等价于 (right-left)/2，避免溢出
+            int mid = left + ((right - left)  >> 1);
+            if(num[mid] > target){
+                right = mid; // 目标在左半区，右边界设为mid（不包含）
+            }else if(num[mid] < target){
+                left = mid + 1; // 目标在右半区，左边界设为mid+1（包含）
+            }else{
+                return mid; // 找到目标，返回索引
+            }
+        }
+        return -1; // 未找到目标
+    }
+};
