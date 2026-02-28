@@ -6,17 +6,17 @@ Author by:ZY
 // 解法1-暴力求解
 // 时间复杂度：O(n^2)
 // 空间复杂度：O(1)
-class Solution {
+class Solution{
 public:
-    int removeElement(vector<int>& nums, int val) {
+    int RemoveElement(vector<int> &nums, int val){
         int size = nums.size();
-        for (int i = 0; i < size; i++) {
-            if (nums[i] == val) {
-                for (int j = i + 1; j < size; j++) {
+        for(int i = 0; i < size; i++){
+            if (nums[i] == val){
+                for(int j = i+1;j < size; j++){
                     nums[j - 1] = nums[j];
                 }
-                i--; 
-                size--; 
+                i--; // 抵消外层循环的 i++，让 i 停留在当前下标，重新检查 “被前移过来的新元素”，避免漏掉连续匹配的元素；
+                size--;
             }
         }
         return size;
