@@ -26,15 +26,15 @@ public:
 // 解法2-双指针法
 // 时间复杂度：O(n)
 // 空间复杂度：O(1)
-class Solution {
+class Solution{
 public:
-    int removeElement(vector<int>& nums, int val) {
-        int slowIndex = 0;
-        for (int fastIndex = 0; fastIndex < nums.size(); fastIndex++) {
-            if (val != nums[fastIndex]) {
-                nums[slowIndex++] = nums[fastIndex];
+    int DoublePtr(vector<int> &nums, int val){
+        int slow = 0;
+        for(int fast = 0;fast < nums.size(); fast++){
+            if(nums[fast] != val){
+                nums[slow++] = nums[fast];
             }
         }
-        return slowIndex;
+        return slow;
     }
 };
